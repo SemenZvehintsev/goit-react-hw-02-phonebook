@@ -9,13 +9,16 @@ export class App extends Component {
   }
 
   handleAddName = (event) => {
-    this.setState(prevstate => prevstate.name = prevstate.name + event.target.value)
-    console.log(event.target.value)
+    const nameItem = event.target.value;
+    this.setState(({name}) => {return {name: name + nameItem}})
   }
 
   handleAddContact =(event) => {
     event.preventDefault()
-    this.setState((prevstate) => {return prevstate.contacts = [...prevstate.contacts, {id: nanoid(), contactName: this.state.name}], prevstate.name = ''})
+    this.setState(({contacts, name}) => {
+      console.log(contacts, name)
+      return {contacts: [...contacts, {id: nanoid(), contactName: this.state.name}], name: ''}
+    })
   }
 
   render (){
