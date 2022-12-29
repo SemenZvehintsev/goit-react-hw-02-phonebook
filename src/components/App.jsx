@@ -10,7 +10,7 @@ export class App extends Component {
 
   handleAddName = (event) => {
     const nameItem = event.target.value;
-    this.setState(({name}) => {return {name: name + nameItem}})
+    this.setState({name: nameItem})
   }
 
   handleAddContact =(event) => {
