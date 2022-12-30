@@ -33,7 +33,7 @@ export class App extends Component {
   const {contacts, filter} = this.state;
 
   return (
-    <div>
+    <div style={{padding: '50px'}}>
       <h1>Phonebook</h1>
       <ContactForm onSubmitAdd={this.handleAddContact}/>
       <h2>Contacts</h2>
