@@ -5,6 +5,8 @@ import styles from 'components/ContactForm/ContactForm.module.css'
 
 export class ContactForm extends Component {
 
+    static propTypes = {onSubmitAdd: PropTypes.func.isRequired};
+
     state = {
         name: '',
         number: ''
@@ -59,8 +61,4 @@ export class ContactForm extends Component {
         />
         <button className={styles.button} type="submit">Add contact</button>
     </form>}
-}
-
-ContactForm.propTypes = {
-    onSubmitAdd: PropTypes.func.isRequired
 }

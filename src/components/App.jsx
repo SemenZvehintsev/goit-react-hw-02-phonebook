@@ -14,7 +14,7 @@ export class App extends Component {
 
   handleAdd = (event) => {
     const {name, value} = event.target;
-    this.setState({[name]: value})
+    this.setState({[name]: value});
   }
 
   handleAddContact = (name, number) => {
@@ -30,7 +30,14 @@ export class App extends Component {
   }
 
   render (){
+  
   const {contacts, filter} = this.state;
+
+  const autoFilter = () => {
+    const filteredContacts = contacts.filter(({contactName}) => 
+    {return contactName.toLowerCase().indexOf(this.state.filter.toLowerCase()) > -1})
+    return filteredContacts;
+  }
 
   return (
     <div style={{padding: '50px'}}>
@@ -38,7 +45,7 @@ export class App extends Component {
       <ContactForm onSubmitAdd={this.handleAddContact}/>
       <h2>Contacts</h2>
       <Filter filter={filter} onChangeFilter={this.handleAdd}/> 
-      <ContactList contacts={contacts} filter={filter} onClickDelete={this.handleDelete}/>
+      <ContactList contacts={filter ? autoFilter() : contacts} filter={filter} onClickDelete={this.handleDelete}/>
     </div>
   );}
 };
