@@ -18,8 +18,8 @@ export class App extends Component {
   }
 
   handleAddContact = (name, number) => {
-    this.state.contacts.map(({contactName}) => contactName.toLowerCase()).includes(name.toLowerCase()) ? 
-    alert(`${name} is already in contacts.`) : 
+    // this.state.contacts.map(({contactName}) => contactName.toLowerCase()).includes(name.toLowerCase()) ? 
+    // alert(`${name} is already in contacts.`) : 
     this.setState(({contacts}) => {
       return {contacts: [...contacts, {id: nanoid(), contactName: name, contactNumber: number}]}})
   }
@@ -42,7 +42,7 @@ export class App extends Component {
   return (
     <div style={{padding: '50px'}}>
       <h1>Phonebook</h1>
-      <ContactForm onSubmitAdd={this.handleAddContact}/>
+      <ContactForm contacts={contacts} onSubmitAdd={this.handleAddContact}/>
       <h2>Contacts</h2>
       <Filter filter={filter} onChangeFilter={this.handleAdd}/> 
       <ContactList contacts={filter ? autoFilter() : contacts} filter={filter} onClickDelete={this.handleDelete}/>

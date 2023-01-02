@@ -5,7 +5,14 @@ import styles from 'components/ContactForm/ContactForm.module.css'
 
 export class ContactForm extends Component {
 
-    static propTypes = {onSubmitAdd: PropTypes.func.isRequired};
+    static propTypes = {
+        contacts: PropTypes.arrayOf(PropTypes.exact({
+            id: PropTypes.string.isRequired,
+            contactName: PropTypes.string.isRequired,
+            contactNumber: PropTypes.string.isRequired
+        }).isRequired).isRequired,
+        onSubmitAdd: PropTypes.func.isRequired
+    };
 
     state = {
         name: '',
@@ -20,11 +27,14 @@ export class ContactForm extends Component {
     handleSubmit =(event) => {
         event.preventDefault();
         const {name, number} = this.state;
-        this.props.onSubmitAdd(name, number);
-        this.setState({
-            name: '',
-            number: ''
-        })
+        if (this.props.contacts.map(({contactName}) => contactName.toLowerCase()).includes(name.toLowerCase())) { 
+            alert(`${name} is already in contacts.`)} 
+        else {
+            this.props.onSubmitAdd(name, number);
+            this.setState({
+                name: '',
+                number: ''
+        })}
     }
 
     render() {
